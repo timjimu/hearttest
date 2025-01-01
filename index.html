@@ -410,6 +410,145 @@
         td:hover {
             transform: none; /* 移除 td 的懸停效果，因為已經在 label 上設置了 */
         }
+
+        /* 結果區域的基本樣式 */
+        .results {
+            display: none;
+            padding: 30px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.95));
+            box-shadow: 0 10px 30px rgba(255, 126, 179, 0.2);
+            border: 2px solid rgba(255, 126, 179, 0.3);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* 結果標題動畫 */
+        .results h2 {
+            animation: slideDown 0.8s ease-out;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            text-shadow: 2px 2px 4px rgba(255, 126, 179, 0.2);
+        }
+
+        /* 結果角色圖片動畫 */
+        .results .character-img {
+            animation: popAndRotate 1s ease-out;
+            border: 4px solid var(--primary-color);
+            border-radius: 50%;
+            box-shadow: 0 5px 15px rgba(255, 126, 179, 0.3);
+            margin: 20px auto;
+        }
+
+        /* 結果文字動畫 */
+        .results p {
+            animation: fadeInUp 0.8s ease-out;
+            margin: 15px 0;
+            line-height: 1.6;
+        }
+
+        .results .result-description {
+            animation: fadeInUp 1s ease-out 0.3s;
+            opacity: 0;
+            animation-fill-mode: forwards;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        /* 裝飾元素 */
+        .results::before,
+        .results::after {
+            content: '✨';
+            position: absolute;
+            font-size: 2em;
+            color: var(--accent-color);
+            animation: twinkle 2s infinite;
+        }
+
+        .results::before {
+            top: 10px;
+            left: 10px;
+        }
+
+        .results::after {
+            bottom: 10px;
+            right: 10px;
+        }
+
+        /* 定義動畫 */
+        @keyframes slideDown {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes popAndRotate {
+            0% {
+                transform: scale(0) rotate(-180deg);
+                opacity: 0;
+            }
+            60% {
+                transform: scale(1.1) rotate(10deg);
+            }
+            80% {
+                transform: scale(0.95) rotate(-5deg);
+            }
+            100% {
+                transform: scale(1) rotate(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes twinkle {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.5;
+                transform: scale(0.8);
+            }
+        }
+
+        /* 響應式設計調整 */
+        @media (max-width: 768px) {
+            .results {
+                padding: 20px;
+                margin: 10px;
+            }
+
+            .results h2 {
+                font-size: 1.5em;
+            }
+
+            .results .character-img {
+                max-width: 150px;
+            }
+
+            .results p {
+                font-size: 0.9em;
+            }
+        }
     </style>
 </head>
 <body>
@@ -741,9 +880,9 @@
                 const resultData = resultDescriptions[result];
                 resultsDiv.style.display = 'block';
                 resultsDiv.innerHTML = `
-                    <h2>感謝你的參加！</h2>
+                    <h2>✨ 測驗結果 ✨</h2>
                     <img src="${resultData.image}" class="character-img" alt="${result}角色">
-                    <p>你的旅遊角色是：<strong>${result}</strong></p>
+                    <p class="result-title">你的旅遊角色是：<strong>${result}</strong></p>
                     <p class="result-description">${resultData.description}</p>
                 `;
             } else {
