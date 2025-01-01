@@ -30,6 +30,7 @@
             border: 2px solid rgba(255, 126, 179, 0.3);
             border-radius: 25px;
             box-sizing: border-box;
+            overflow: hidden;
         }
 
         .container h1 {
@@ -51,6 +52,8 @@
             background: rgba(255, 255, 255, 0.9);
             min-height: 400px;
             text-align: center;
+            box-sizing: border-box;
+            width: 100%;
         }
 
         button {
@@ -238,9 +241,10 @@
         /* 響應式設計 */
         @media (max-width: 768px) {
             .container {
-                margin: 10px;
+                margin: 10px auto;
                 padding: 15px;
-                width: calc(100% - 20px);
+                width: 95%;
+                max-width: none;
             }
 
             .character-img {
@@ -278,7 +282,7 @@
             }
 
             .question {
-                padding: 15px 10px;
+                padding: 15px 5px;
                 margin: 10px 0;
                 min-height: auto;
             }
@@ -288,14 +292,18 @@
                 padding: 0 10px;
                 font-size: 0.9em;
             }
+
+            table {
+                padding: 0 5px;
+            }
         }
 
         /* 添加更小螢幕的樣式 */
         @media (max-width: 480px) {
             .container {
-                margin: 5px;
+                margin: 5px auto;
                 padding: 10px;
-                width: calc(100% - 10px);
+                width: 98%;
             }
 
             h1 {
@@ -324,6 +332,8 @@
             margin: 20px auto;
             border-collapse: separate;
             border-spacing: 0 10px;
+            box-sizing: border-box;
+            padding: 0 10px;
         }
 
         input[type="radio"] {
